@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Dialog?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.TextArea?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartpos.controller.SettingsController"
+            stylesheets="@../styles/style.css">
+    
+    <center>
+        <VBox spacing="20">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <!-- User Management -->
+            <TitledPane text="Gestion des utilisateurs" expanded="true">
+                <content>
+                    <VBox spacing="10">
+                        <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="loginColumn" text="Login"/>
+                                <TableColumn fx:id="roleColumn" text="Rôle"/>
+                                <TableColumn fx:id="userActionsColumn" text="Actions"/>
+                            </columns>
+                        </TableView>
+                        <HBox spacing="10" styleClass="button-bar">
+                            <Button text="Ajouter" onAction="#handleAddUser" styleClass="button-primary"/>
+                            <Button text="Modifier" onAction="#handleChangePassword" styleClass="button-secondary"/>
+                            <Button text="Supprimer" onAction="#handleDeleteUser" styleClass="button-danger"/>
+                        </HBox>
+                    </VBox>
+                </content>
+            </TitledPane>
+            
+            <!-- Store Information -->
+            <TitledPane text="Informations du magasin" expanded="true">
+                <content>
+                    <GridPane hgap="10" vgap="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        
+                        <Label text="Nom du magasin:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <TextField fx:id="storeNameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        
+                        <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="storeAddressField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        
+                        <Label text="Téléphone:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="storePhoneField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        
+                        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <TextField fx:id="storeEmailField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    </GridPane>
+                </content>
+            </TitledPane>
+            
+            <!-- Ticket Settings -->
+            <TitledPane text="Paramètres des tickets" expanded="true">
+                <content>
+                    <GridPane hgap="10" vgap="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        
+                        <Label text="En-tête:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <TextArea fx:id="receiptHeaderField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        
+                        <Label text="Pied de page:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextArea fx:id="receiptFooterField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        
+                        <Label text="Imprimante:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <ComboBox fx:id="printerComboBox" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    </GridPane>
+                </content>
+            </TitledPane>
+            
+            <!-- Backup -->
+            <TitledPane text="Sauvegarde" expanded="true">
+                <content>
+                    <HBox spacing="10" styleClass="button-bar">
+                        <Button text="Créer une sauvegarde" onAction="#handleBackup" styleClass="button-primary"/>
+                        <Button text="Restaurer une sauvegarde" onAction="#handleRestore" styleClass="button-secondary"/>
+                    </HBox>
+                </content>
+            </TitledPane>
+            
+            <HBox spacing="10" styleClass="button-bar">
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Enregistrer" onAction="#handleSave" styleClass="button-primary"/>
+            </HBox>
+        </VBox>
+    </center>
+    
+</BorderPane> 

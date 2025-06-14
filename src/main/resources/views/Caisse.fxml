@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.smartpos.controller.CaisseController" styleClass="cash-register">
+    
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="barcodeField" promptText="Code-barres" styleClass="text-field" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="scanButton" onAction="#handleScan" text="Scanner" styleClass="button"/>
+                <Button fx:id="searchButton" onAction="#handleSearch" text="Rechercher" styleClass="button"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <SplitPane dividerPositions="0.7">
+            <items>
+                <!-- Left side: Product grid -->
+                <VBox>
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    
+                    <TableView fx:id="productsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="nameColumn" text="Nom" prefWidth="200"/>
+                            <TableColumn fx:id="priceColumn" text="Prix" prefWidth="100"/>
+                            <TableColumn fx:id="stockColumn" text="Stock" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+                
+                <!-- Right side: Cart -->
+                <VBox styleClass="cart-container">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    
+                    <TableView fx:id="cartTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="cartNameColumn" text="Produit" prefWidth="150"/>
+                            <TableColumn fx:id="cartCategoryColumn" text="Catégorie" prefWidth="100"/>
+                            <TableColumn fx:id="cartQuantityColumn" text="Qté" prefWidth="50"/>
+                            <TableColumn fx:id="cartPriceColumn" text="Prix" prefWidth="80"/>
+                            <TableColumn fx:id="cartTotalColumn" text="Total" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                    
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Remise (%):"/>
+                        <TextField fx:id="discountField" prefWidth="80" styleClass="text-field"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label text="Total:" styleClass="total-label"/>
+                        <Label fx:id="totalLabel" styleClass="total-label"/>
+                    </HBox>
+                    
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Montant reçu:"/>
+                        <TextField fx:id="amountReceivedField" prefWidth="100" styleClass="text-field"/>
+                        <Label text="Monnaie à rendre:"/>
+                        <Label fx:id="changeLabel" styleClass="total-label"/>
+                    </HBox>
+                    
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button fx:id="validateButton" onAction="#handleValidate" text="Valider" styleClass="button"/>
+                        <Button fx:id="cancelButton" onAction="#handleCancel" text="Annuler" styleClass="button"/>
+                    </HBox>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane> 

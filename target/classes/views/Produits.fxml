@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Dialog?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.ButtonType?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartpos.controller.ProduitsController"
+            styleClass="main-container"
+            stylesheets="@../styles/style.css">
+    
+    <top>
+        <HBox spacing="10" styleClass="search-box">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <TextField fx:id="searchField" promptText="Rechercher un produit..." HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="categoryFilter" promptText="Catégorie"/>
+            <Button text="Rechercher" onAction="#handleFilter"/>
+        </HBox>
+    </top>
+    
+    <center>
+        <TableView fx:id="productsTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Nom" prefWidth="200"/>
+                <TableColumn fx:id="priceColumn" text="Prix" prefWidth="100"/>
+                <TableColumn fx:id="barcodeColumn" text="Code-barres" prefWidth="150"/>
+                <TableColumn fx:id="stockColumn" text="Stock" prefWidth="100"/>
+                <TableColumn fx:id="categoryColumn" text="Catégorie" prefWidth="150"/>
+                <TableColumn fx:id="alertColumn" text="Seuil d'alerte" prefWidth="100"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </center>
+    
+    <bottom>
+        <HBox spacing="10" styleClass="button-bar">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Ajouter" onAction="#handleAdd" styleClass="button-primary"/>
+            <Button text="Modifier" onAction="#handleEdit" styleClass="button-secondary"/>
+            <Button text="Supprimer" onAction="#handleDelete" styleClass="button-danger"/>
+        </HBox>
+    </bottom>
+</BorderPane> 

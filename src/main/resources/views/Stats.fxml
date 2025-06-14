@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartpos.controller.StatsController"
+            stylesheets="@../styles/style.css">
+    
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Période:"/>
+                <DatePicker fx:id="startDate" promptText="Date début"/>
+                <Label text="à"/>
+                <DatePicker fx:id="endDate" promptText="Date fin"/>
+                <Button fx:id="refreshButton" onAction="#handleRefresh" text="Actualiser" styleClass="button"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="exportButton" onAction="#handleExport" text="Exporter" styleClass="button"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <VBox spacing="20">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <!-- Sales Chart -->
+            <TitledPane text="Ventes" expanded="true">
+                <content>
+                    <VBox spacing="10">
+                        <LineChart fx:id="salesChart">
+                            <xAxis>
+                                <CategoryAxis label="Date"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Montant"/>
+                            </yAxis>
+                        </LineChart>
+                    </VBox>
+                </content>
+            </TitledPane>
+            
+            <!-- Products Chart -->
+            <TitledPane text="Produits" expanded="true">
+                <content>
+                    <VBox spacing="10">
+                        <BarChart fx:id="topProductsChart">
+                            <xAxis>
+                                <CategoryAxis label="Produit"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Quantité vendue"/>
+                            </yAxis>
+                        </BarChart>
+                        <PieChart fx:id="categoriesChart"/>
+                    </VBox>
+                </content>
+            </TitledPane>
+            
+            <!-- Low Stock Table -->
+            <TitledPane text="Stock Faible" expanded="true">
+                <content>
+                    <VBox spacing="10">
+                        <TableView fx:id="lowStockTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="productNameColumn" text="Produit"/>
+                                <TableColumn fx:id="stockColumn" text="Stock"/>
+                                <TableColumn fx:id="alertColumn" text="Seuil d'alerte"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </content>
+            </TitledPane>
+            
+            <!-- Categories Table -->
+            <TitledPane text="Catégories" expanded="true">
+                <content>
+                    <VBox spacing="10">
+                        <TableView fx:id="categoriesTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="categoryColumn" text="Catégorie"/>
+                                <TableColumn fx:id="salesColumn" text="Ventes"/>
+                                <TableColumn fx:id="percentageColumn" text="Pourcentage"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </content>
+            </TitledPane>
+            
+            <!-- Summary -->
+            <TitledPane text="Résumé" expanded="true">
+                <content>
+                    <GridPane hgap="10" vgap="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <Label text="Total des ventes:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label fx:id="totalSalesLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        
+                        <Label text="Nombre de transactions:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <Label fx:id="salesCountLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        
+                        <Label text="Panier moyen:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <Label fx:id="averageCartLabel" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        
+                        <Label text="Produit le plus vendu:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <Label fx:id="topProductLabel" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    </GridPane>
+                </content>
+            </TitledPane>
+        </VBox>
+    </center>
+</BorderPane> 

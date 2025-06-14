@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.smartpos.controller.MainController">
+    
+    <top>
+        <HBox styleClass="header">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            
+            <Label fx:id="userLabel" styleClass="user-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="logoutButton" onAction="#handleLogout" text="Déconnexion" styleClass="button"/>
+        </HBox>
+    </top>
+    
+    <left>
+        <VBox styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+            
+            <Button fx:id="caisseButton" onAction="#showCaisse" text="Caisse" styleClass="menu-button"/>
+            <Button fx:id="produitsButton" onAction="#showProduits" text="Produits" styleClass="menu-button"/>
+            <Button fx:id="statsButton" onAction="#showStats" text="Statistiques" styleClass="menu-button"/>
+            <Button fx:id="settingsButton" onAction="#showSettings" text="Paramètres" styleClass="menu-button"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <StackPane fx:id="contentArea">
+            <!-- Dynamic content will be loaded here -->
+        </StackPane>
+    </center>
+</BorderPane> 
