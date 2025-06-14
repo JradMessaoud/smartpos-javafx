@@ -41,3 +41,31 @@ SmartPOS is a Java-based desktop application designed to help small businesses m
 1. Clone the repo:
 ```bash
 git clone https://github.com/JradMessaoud/smartpos-javafx.git
+```
+
+   
+2.  Open with IntelliJ or your preferred IDE
+   3.  Make sure JavaFX is configured
+   4.  Run MainApp.java
+
+ ## 📦 Packaging
+To generate an executable .jar or .exe, use:
+
+```bash
+mvn clean package 
+```
+
+
+Or use jpackage for native installers (Windows/macOS/Linux).
+
+
+👤 Author
+Messaoud Jrad
+📧 jradmassoud@gmail.com
+LinkedIn | Portfolio
+
+
+
+
+
+
